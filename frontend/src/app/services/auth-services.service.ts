@@ -6,7 +6,7 @@ import { Task } from '../model/task';
   providedIn: 'root',
 })
 export class AuthServicesService {
-  private apiURL = 'http://localhost:3216';
+  private apiURL = 'http://localhost:9898';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -21,32 +21,40 @@ export class AuthServicesService {
     return !!localStorage.getItem('user');
   }
   signup(data: any) {
-    return this.httpClient.post(`${this.apiURL}/user/signup`, data);
+    return this.httpClient.post(`${this.apiURL}/get-api/post-register-api`, data);
   }
   login(data: any) {
-    return this.httpClient.post(`${this.apiURL}/user/login`, data);
+    return this.httpClient.post(`${this.apiURL}/get-api/post-login-api`, data);
   }
-  checkmail(data: any) {
-    return this.httpClient.post(`${this.apiURL}/user/forgetpassword`, data);
-  }
-  resetPassword(data: any) {
-    return this.httpClient.post(`${this.apiURL}/user/resetpassword`, data);
-  }
+
   addtask(todo: any,_id:any){
     // console.log("Task",todo)
-    return this.httpClient.post<any>(`${this.apiURL}/user/addtask`, { todo ,_id});
+    return this.httpClient.post<any>(
+      `${this.apiURL}/get-api/post-addtask-api`,
+      {
+        todo,
+        _id,
+      }
+    );
   }
   gettask(): Observable<Task[]> {
-    return this.httpClient.get<Task[]>(`${this.apiURL}/user/list`);
+    return this.httpClient.get<Task[]>(
+      `${this.apiURL}/get-api/get-alllist-api`
+    );
   }
   
   updateTask(_id: any, todoId:any,data: any) {
     let userData = { ...data, _id,todoId };
     console.log("userData update servise", userData)
-    return this.httpClient.post<any>(`${this.apiURL}/user/update`
-      , userData);
+    return this.httpClient.post<any>(
+      `${this.apiURL}/get-api/post-update-task-api`,
+      userData
+    );
   }
   deletetask(_id:any,todoId:any){
-    return this.httpClient.put<Task>(`${this.apiURL}/user/deletetask`, {_id,todoId});
+    return this.httpClient.put<Task>(`${this.apiURL}/get-api/put-delete-api`, {
+      _id,
+      todoId,
+    });
   }
 }

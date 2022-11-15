@@ -9,8 +9,6 @@ import { HttpClientModule } from '@angular/common/http'
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { DashboardComponent } from './user/dashboard/dashboard.component';
-import { CheckemailComponent } from './user/checkemail/checkemail.component';
-import { ResetPasswordComponent } from './user/reset-password/reset-password.component';
 import { HomeComponent } from './home/home.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MyprofileComponent } from './user/myprofile/myprofile.component';
@@ -20,8 +18,6 @@ import { MyprofileComponent } from './user/myprofile/myprofile.component';
     LoginComponent,
     RegisterComponent,
     DashboardComponent,
-    CheckemailComponent,
-    ResetPasswordComponent,
     HomeComponent,
     MyprofileComponent,
   

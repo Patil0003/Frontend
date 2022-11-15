@@ -43,10 +43,10 @@ export class LoginComponent implements OnInit {
       if (response.status == true) {
         // console.log(response.result)
         localStorage.setItem('user', JSON.stringify(response.result));
-        localStorage.setItem(
-          'todoArray',
-          JSON.stringify(response.result.todoArray)
-        );
+        // localStorage.setItem(
+        //   'todoArray',
+        //   JSON.stringify(response.result.todoArray)
+        // );
         setTimeout(() => {
           this.spinner.hide();
 
