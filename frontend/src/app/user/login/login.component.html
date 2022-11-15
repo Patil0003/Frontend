@@ -1,0 +1,45 @@
+<div class="container login-container">
+    <div class="row">
+      <div class="col-md-6 ads">
+        <h1><span id="fl">TO_DO</span><span id="sl">  List</span></h1>
+      </div>
+      <div class="col-md-6 login-form">
+        
+        <h3>Login</h3>
+        <form [formGroup] = "loginForm" (ngSubmit)="login(loginForm.value)">
+          <div class="form-group">
+            <input type="email" class="form-control" formControlName="email" placeholder="Email Address" [ngClass]="{ 'is-invalid': submitted && f['email'].errors }" />
+            <div *ngIf="submitted && f['email'].errors" class="invalid-feedback">
+                <div *ngIf="f['email'].errors['required']">Email is required</div>
+            </div>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" formControlName="password" placeholder="Password" [ngClass]="{ 'is-invalid': submitted && f['password'].errors }" />
+            <div *ngIf="submitted && f['password'].errors" class="invalid-feedback">
+              <div *ngIf="f['password'].errors['required']">Password is required</div>
+              <div *ngIf="f['password'].errors['minlength']">Password must be at least 6 characters</div>
+          </div>
+          </div>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary btn-lg btn-block"   (click)="simpleAlert()">Sign In</button>
+          </div>
+          <div class="form-group forget-password">
+              <a routerLink="/checkemail">Forget Password</a>
+          </div>
+          <div class="form-group  register">
+            Don't have an account?
+            <a routerLink="/register">Register</a>
+        </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)" size = "large" color = "#fff" type = "la-ball-climbing-dot" [fullScreen] = "true"><p style="color: rgb(139, 65, 65)" ></p></ngx-spinner>
+
+<!-- <div style="color: #f4696b" class="la-ball-climbing-dot la-3x">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+</div> -->

@@ -1,0 +1,31 @@
+<div class="container login-container">
+  <div class="row">
+    <div class="col-md-6 ads" *ngIf="loggedin()">
+      <h1>
+        <span id="fl">
+          <img src="{{ user.image }}" width="150px" height="150px" /> </span
+        ><span id="sl"></span>
+      </h1>
+    </div>
+    <div class="col-md-6 login-form" *ngIf="loggedin()">
+      <div class="col-md-9">
+        <div class="text-center">
+          <span>
+            <label>Full Name:- {{ user.name }}</label>
+            <label>Email Address:- {{ user.email }}</label>
+            <label>Contact Number:- {{ user.mobile }}</label>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ngx-spinner
+  bdColor="rgba(0, 0, 0, 0.8)"
+  size="large"
+  color="#fff"
+  type="la-ball-climbing-dot"
+  [fullScreen]="true"
+  ><p style="color: rgb(139, 65, 65)"></p
+></ngx-spinner>
