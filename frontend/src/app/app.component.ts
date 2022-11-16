@@ -13,10 +13,11 @@ export class AppComponent {
   //   Swal.fire('Loading..');
   // }
   title = 'todolist';
-  User: any;
+  User: any='';
   constructor(private router: Router, private toastr: ToastrService) {}
   ngOnInit(): void {
-    // this.User = JSON.parse(localStorage.getItem('user') as any);
+    let user: any = JSON.parse(localStorage.getItem('user') as any);
+    // this.User = user.name
   }
 
   loggedin() {

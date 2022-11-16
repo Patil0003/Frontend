@@ -6,7 +6,7 @@ import { Task } from '../model/task';
   providedIn: 'root',
 })
 export class AuthServicesService {
-  private apiURL = 'http://localhost:9898';
+  private apiURL = 'http://localhost:9999';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -21,38 +21,33 @@ export class AuthServicesService {
     return !!localStorage.getItem('user');
   }
   signup(data: any) {
-    return this.httpClient.post(`${this.apiURL}/get-api/post-register-api`, data);
+    return this.httpClient.post(`${this.apiURL}/user/signup`, data);
   }
   login(data: any) {
-    return this.httpClient.post(`${this.apiURL}/get-api/post-login-api`, data);
+    return this.httpClient.post(`${this.apiURL}/user/login`, data);
   }
 
-  addtask(todo: any,_id:any){
+  addtask(todo: any, _id: any) {
     // console.log("Task",todo)
-    return this.httpClient.post<any>(
-      `${this.apiURL}/get-api/post-addtask-api`,
-      {
-        todo,
-        _id,
-      }
-    );
+    return this.httpClient.post<any>(`${this.apiURL}/user/add-task`, {
+      todo,
+      _id,
+    });
   }
   gettask(): Observable<Task[]> {
-    return this.httpClient.get<Task[]>(
-      `${this.apiURL}/get-api/get-alllist-api`
-    );
+    return this.httpClient.get<Task[]>(`${this.apiURL}/user/show-list`);
   }
-  
-  updateTask(_id: any, todoId:any,data: any) {
-    let userData = { ...data, _id,todoId };
-    console.log("userData update servise", userData)
+
+  updateTask(_id: any, todoId: any, data: any) {
+    let userData = { ...data, _id, todoId };
+    console.log('userData update servise', userData);
     return this.httpClient.post<any>(
-      `${this.apiURL}/get-api/post-update-task-api`,
+      `${this.apiURL}/user/update-task`,
       userData
     );
   }
-  deletetask(_id:any,todoId:any){
-    return this.httpClient.put<Task>(`${this.apiURL}/get-api/put-delete-api`, {
+  deletetask(_id: any, todoId: any) {
+    return this.httpClient.put<Task>(`${this.apiURL}/user/delete-task`, {
       _id,
       todoId,
     });

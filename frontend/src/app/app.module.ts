@@ -12,6 +12,7 @@ import { DashboardComponent } from './user/dashboard/dashboard.component';
 import { HomeComponent } from './home/home.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { MyprofileComponent } from './user/myprofile/myprofile.component';
+import { NavbarComponent } from './user/navbar/navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +21,7 @@ import { MyprofileComponent } from './user/myprofile/myprofile.component';
     DashboardComponent,
     HomeComponent,
     MyprofileComponent,
+    NavbarComponent,
   
   ],
   imports: [

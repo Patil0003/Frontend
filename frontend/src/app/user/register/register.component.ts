@@ -9,7 +9,7 @@ import { AuthServicesService } from '../../services/auth-services.service';
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnInit {
-  public signupForm: any = FormGroup;
+  public signupForm!: FormGroup;
   submitted = false;
   constructor(
     private formBuilder: FormBuilder,
@@ -27,7 +27,7 @@ export class RegisterComponent implements OnInit {
       mobile: ['', [Validators.required, Validators.minLength(10)]],
       email: ['', Validators.required],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      image: ['', Validators.required],
+      // image: ['', Validators.required],
     });
   }
   get f() {
@@ -45,7 +45,7 @@ export class RegisterComponent implements OnInit {
     }
     this.service.signup(form).subscribe((response: any) => {
       if (response.status == true) {
-        console.log(response.status,"ddfg");
+        // console.log(response.data.status,"ddfg");
         this.toastr.success('User Register Successful!');
         this.router.navigate(['/login']);
       } else {
