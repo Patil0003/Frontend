@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
 // import Swal from 'sweetalert2';
 
@@ -10,11 +11,9 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
-  // simpleAlert() {
-  //   Swal.fire('Loading..');
-  // }
+  simpleAlert() {}
   title = 'todolist';
-  User: any='';
+  User: any = '';
   constructor(private router: Router, private toastr: ToastrService) {}
   ngOnInit(): void {
     let user: any = JSON.parse(localStorage.getItem('user') as any);
@@ -26,7 +25,7 @@ export class AppComponent {
   }
   logout() {
     localStorage.clear();
-    this.toastr.info('User Logout');
+    Swal.fire('User Logout');
     this.router.navigate(['/login']);
   }
 }

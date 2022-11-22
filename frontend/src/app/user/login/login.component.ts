@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { AuthServicesService } from '../../services/auth-services.service';
-import { NgxSpinnerService } from 'ngx-spinner';
 import Swal from 'sweetalert2';
 import { BnNgIdleService } from 'bn-ng-idle';
 @Component({
@@ -21,8 +19,6 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private service: AuthServicesService,
-    private toastr: ToastrService,
-    private spinner: NgxSpinnerService,
     private bnIdle: BnNgIdleService
   ) {}
 
@@ -41,7 +37,7 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.service.login(form).subscribe((response: any) => {
-      if (response.data.status == true) {
+      if (response.data.status == 200) {
         // console.log(response.data.result);
         localStorage.setItem('user', JSON.stringify(response.data.result));
         localStorage.setItem(
@@ -68,3 +64,4 @@ export class LoginComponent implements OnInit {
     });
   }
 }
+// 
