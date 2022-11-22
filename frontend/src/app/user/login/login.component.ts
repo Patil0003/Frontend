@@ -5,6 +5,7 @@ import { ToastrService } from 'ngx-toastr';
 import { AuthServicesService } from '../../services/auth-services.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import Swal from 'sweetalert2';
+import { BnNgIdleService } from 'bn-ng-idle';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -21,7 +22,8 @@ export class LoginComponent implements OnInit {
     private router: Router,
     private service: AuthServicesService,
     private toastr: ToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
+    private bnIdle: BnNgIdleService
   ) {}
 
   ngOnInit(): void {
@@ -33,30 +35,6 @@ export class LoginComponent implements OnInit {
   get f() {
     return this.loginForm.controls;
   }
-  // login(form: any) {
-  //   this.spinner.show();
-  //   this.submitted = true;
-  //   if (this.loginForm.invalid) {
-  //     return;
-  //   }
-  //   this.service.login(form).subscribe((response: any) => {
-  //     if (response.data.status == true) {
-  //       // console.log(response.result)
-  //       localStorage.setItem('user', JSON.stringify(response.data.result));
-  //       localStorage.setItem(
-  //         'todoArray',
-  //         JSON.stringify(response.result.todoArray)
-  //       );
-  //       setTimeout(() => {
-  //         this.spinner.hide();
-
-  //         this.router.navigate(['']);
-  //       }, 1000);
-  //     } else {
-  //       this.toastr.error(' Login Failed!');
-  //     }
-  //   });
-  // }
   login(form: any) {
     this.submitted = true;
     if (this.loginForm.invalid) {
@@ -71,6 +49,17 @@ export class LoginComponent implements OnInit {
           JSON.stringify(response.data.result.todoArray)
         );
         Swal.fire('Login Success');
+        //session-management
+        this.bnIdle.startWatching(10).subscribe((isTimeOut: Boolean) => {
+          if (isTimeOut) {
+            console.log('Session Expired');
+            localStorage.removeItem('user');
+            localStorage.removeItem('todoArray');
+            this.router.navigate(['/login']);
+            Swal.fire('User Logout');
+            this.bnIdle.stopTimer();
+          }
+        });
 
         this.router.navigate(['']);
       } else {

@@ -40,7 +40,7 @@ export class AuthServicesService {
 
   updateTask(_id: any, todoId: any, data: any) {
     let userData = { ...data, _id, todoId };
-    console.log('userData update servise', userData);
+    // console.log('userData update servise', userData);
     return this.httpClient.post<any>(
       `${this.apiURL}/user/update-task`,
       userData
