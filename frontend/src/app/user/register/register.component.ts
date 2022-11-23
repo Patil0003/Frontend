@@ -44,8 +44,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this.service.signup(form).subscribe((response: any) => {
-      if (response.status == true) {
-        // console.log(response.data.status,"ddfg");
+      if (response.data) {        
         this.toastr.success('User Register Successful!');
         this.router.navigate(['/login']);
       } else {

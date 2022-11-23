@@ -37,9 +37,9 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.service.login(form).subscribe((response: any) => {
-      if (response.data.status == 200) {
-        // console.log(response.data.result);
-        localStorage.setItem('user', JSON.stringify(response.data.result));
+      if (response) {
+        // console.log("login",response.data);
+        localStorage.setItem('user', JSON.stringify(response.data));
         localStorage.setItem(
           'todoArray',
           JSON.stringify(response.data.result.todoArray)
@@ -48,12 +48,12 @@ export class LoginComponent implements OnInit {
         //session-management
         this.bnIdle.startWatching(10).subscribe((isTimeOut: Boolean) => {
           if (isTimeOut) {
-            console.log('Session Expired');
+            // console.log('Session Expired');
             localStorage.removeItem('user');
             localStorage.removeItem('todoArray');
             this.router.navigate(['/login']);
-            Swal.fire('User Logout');
             this.bnIdle.stopTimer();
+            Swal.fire('User Logout');
           }
         });
 
@@ -64,4 +64,4 @@ export class LoginComponent implements OnInit {
     });
   }
 }
-// 
+//

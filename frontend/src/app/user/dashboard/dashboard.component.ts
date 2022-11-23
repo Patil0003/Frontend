@@ -24,7 +24,7 @@ export class DashboardComponent implements OnInit {
 
   ngOnInit(): void {
     this.isloggedin = JSON.parse(localStorage.getItem('user') as any);
-    this.userId = this.isloggedin._id;
+    this.userId = this.isloggedin.result._id;
     this.getArray();
   }
 
@@ -40,8 +40,12 @@ export class DashboardComponent implements OnInit {
   }
 
   addTask(data: any) {
+    // console.log('jbkjbkj', this.userId);
+
     this.authservice.addtask(data, this.userId).subscribe((response: any) => {
-      if (response.status) {
+    // console.log("aaaa",response);
+
+      if (response.status==200) {
         this.toastr.success('Task Added Successfully');
 
         localStorage.setItem(
@@ -71,9 +75,11 @@ export class DashboardComponent implements OnInit {
   }
 
   deleteTask(todoId: any) {
+    // console.log('id', todoId);
     this.authservice
       .deletetask(this.userId, todoId)
       .subscribe((response: any) => {
+        // console.log("delete",response)
         localStorage.setItem(
           'todoArray',
           JSON.stringify(response.data.result.todoArray)
