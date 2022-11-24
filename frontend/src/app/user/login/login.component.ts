@@ -53,7 +53,7 @@ export class LoginComponent implements OnInit {
             localStorage.removeItem('todoArray');
             this.router.navigate(['/login']);
             this.bnIdle.stopTimer();
-            Swal.fire('User Logout');
+            Swal.fire('Session Expiry. User Logout');
           }
         });
 
