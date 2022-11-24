@@ -59,10 +59,12 @@ body {
   .form-control {
     font-size: 14px;
   }
-  
-  .forget-password a {
-    font-weight: 500;
-    text-decoration: none;
-    font-size: 14px;
+  .btn{
+    width: 100px;
   }
-  
+ 
+ 
+ 
+ 
+ 
+ 
