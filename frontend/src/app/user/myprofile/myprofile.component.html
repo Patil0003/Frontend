@@ -1,12 +1,24 @@
 <div class="container login-container">
   <div class="row">
+    <form></form>
     <div class="col-md-6 ads" *ngIf="loggedin()">
       My Profile
-      <!-- <h1>
-        <span id="fl">
-          <img src="{{ user.image }}" width="150px" height="150px" /> </span
-        ><span id="sl"></span>
-      </h1> -->
+<div>
+  <img src ={{imagePath}} width ="150px" height ="150px"/>
+</div>
+      <div class="text">
+        Upload your profile picture.
+        <input
+          class="form-control"
+          type="file"
+          (change)="onImagechange($event)"
+        />
+      </div>
+      <div>
+        <button type="button"  class="btn btn-primary btn-lg btn-block" (click)="upload()">
+          Submit
+        </button>
+      </div>
     </div>
     <div class="col-md-6 login-form" *ngIf="loggedin()">
       <div class="col-md-9">

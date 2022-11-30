@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit {
         );
         Swal.fire('Login Success');
         //session-management
-        this.bnIdle.startWatching(10).subscribe((isTimeOut: Boolean) => {
+        this.bnIdle.startWatching(100).subscribe((isTimeOut: Boolean) => {
           if (isTimeOut) {
             // console.log('Session Expired');
             localStorage.removeItem('user');

@@ -6,7 +6,8 @@ import { Task } from '../model/task';
   providedIn: 'root',
 })
 export class AuthServicesService {
-  private apiURL = 'http://localhost:9898';
+  private apiURL = 'http://localhost:9999';
+  private api_Image_URL = 'http://localhost:7979';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -23,6 +24,13 @@ export class AuthServicesService {
   signup(data: any) {
     // console.log("login",data)
     return this.httpClient.post(`${this.apiURL}/user/signup`, data);
+  }
+  fileupload(formData: any) {
+    console.log('login', formData);
+    return this.httpClient.post(
+      `${this.api_Image_URL}/user/imageupload`,
+      formData
+    );
   }
   login(data: any) {
     return this.httpClient.post(`${this.apiURL}/user/login`, data);
@@ -49,6 +57,9 @@ export class AuthServicesService {
   }
 
   deletetask(_id: any, todoId: any) {
-    return this.httpClient.put<Task>(`${this.apiURL}/user/delete-task`,{_id,todoId})
+    return this.httpClient.put<Task>(`${this.apiURL}/user/delete-task`, {
+      _id,
+      todoId,
+    });
   }
 }
