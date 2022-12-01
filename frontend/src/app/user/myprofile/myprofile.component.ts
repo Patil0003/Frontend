@@ -11,7 +11,7 @@ import { AuthServicesService } from '../../services/auth-services.service';
 export class MyprofileComponent implements OnInit {
   uploadform: any = FormGroup;
   user: any;
-  imagePath: any ='https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg';
+  imagePath: any ='path';
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
