@@ -28,6 +28,13 @@ export class AuthServicesService {
     console.log('Console image:-', formData);
     return this.httpClient.post(`${this.apiURL}/gateway/upload`, formData);
   }
+  fileupload(formData: any) {
+    console.log('login', formData);
+    return this.httpClient.post(
+      `${this.api_Image_URL}/user/imageupload`,
+      formData
+    );
+  }
   login(data: any) {
     return this.httpClient.post(`${this.apiURL}/gateway/login`, data);
   }
