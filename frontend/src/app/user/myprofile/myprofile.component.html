@@ -1,10 +1,11 @@
 <div class="container login-container">
   <div class="row">
-    <form></form>
-    <div class="col-md-6 ads" *ngIf="loggedin()">
+
+    <div class="col-md-6 ads" *ngIf="loggedin()" enctype="multipart/form-data">
       My Profile
-<div>
-  <img src ={{imagePath}} width ="150px" height ="150px"/>
+<div *ngFor="let show of imageData" >
+  <img src = "{{show.image}}" width ="150px" height ="150px"/>
+  
 </div>
       <div class="text">
         Upload your profile picture.

@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     }
     this.service.login(form).subscribe((response: any) => {
       if (response) {
-        // console.log("login",response.data);
+        console.log("login",response.data);
         localStorage.setItem('user', JSON.stringify(response.data));
         localStorage.setItem(
           'todoArray',

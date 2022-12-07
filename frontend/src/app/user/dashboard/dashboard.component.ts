@@ -28,7 +28,6 @@ export class DashboardComponent implements OnInit {
     this.getArray();
   }
 
-
   getArray() {
     this.taskArr = JSON.parse(localStorage.getItem('todoArray') as any);
   }
@@ -43,11 +42,9 @@ export class DashboardComponent implements OnInit {
     // console.log('jbkjbkj', this.userId);
 
     this.authservice.addtask(data, this.userId).subscribe((response: any) => {
-    // console.log("aaaa",response);
-
-      if (response.status==200) {
+      // console.log("aaaa",response);
+      if (response.status == 200) {
         this.toastr.success('Task Added Successfully');
-
         localStorage.setItem(
           'todoArray',
           JSON.stringify(response.data.result.todoArray)
