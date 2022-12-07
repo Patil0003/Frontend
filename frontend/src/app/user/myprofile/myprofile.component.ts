@@ -11,7 +11,7 @@ import { AuthServicesService } from '../../services/auth-services.service';
 export class MyprofileComponent implements OnInit {
   uploadform: any = FormGroup;
   user: any;
-  imageList: any = [];
+  imageData: any = [];
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -25,7 +25,6 @@ export class MyprofileComponent implements OnInit {
       image: ['', Validators.required],
     });
     this.showImage();
-
   }
 
   onImagechange(event: any) {
@@ -48,7 +47,7 @@ export class MyprofileComponent implements OnInit {
   showImage() {
     this.service.getImage().subscribe((response: any) => {
       // console.log('Data Comming', response.data.image);
-      this.imageList = response.data.result;
+      this.imageData = response.data.result;
     });
   }
 }
