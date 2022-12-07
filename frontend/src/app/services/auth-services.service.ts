@@ -7,7 +7,6 @@ import { Task } from '../model/task';
 })
 export class AuthServicesService {
   private apiURL = 'http://localhost:9999';
-  private api_Image_URL = 'http://localhost:7979';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -23,43 +22,45 @@ export class AuthServicesService {
   }
   signup(data: any) {
     // console.log("login",data)
-    return this.httpClient.post(`${this.apiURL}/user/signup`, data);
+    return this.httpClient.post(`${this.apiURL}/gateway/signup`, data);
   }
   fileupload(formData: any) {
-    console.log('login', formData);
-    return this.httpClient.post(
-      `${this.api_Image_URL}/user/imageupload`,
-      formData
-    );
+    console.log('Console image:-', formData);
+    return this.httpClient.post(`${this.apiURL}/gateway/upload`, formData);
   }
   login(data: any) {
-    return this.httpClient.post(`${this.apiURL}/user/login`, data);
+    return this.httpClient.post(`${this.apiURL}/gateway/login`, data);
   }
 
   addtask(todo: any, _id: any) {
     // console.log("Task",todo,_id)
-    return this.httpClient.post<any>(`${this.apiURL}/user/add-task`, {
+    return this.httpClient.post<any>(`${this.apiURL}/gateway/add-task`, {
       todo,
       _id,
     });
   }
   gettask(): Observable<Task[]> {
-    return this.httpClient.get<Task[]>(`${this.apiURL}/user/show-list`);
+    return this.httpClient.get<Task[]>(`${this.apiURL}/gateway/show-list`);
   }
 
   updateTask(_id: any, todoId: any, data: any) {
     let userData = { ...data, _id, todoId };
     // console.log('userData update servise', userData);
     return this.httpClient.put<any>(
-      `${this.apiURL}/user/update-task`,
+      `${this.apiURL}/gateway/update-task`,
       userData
     );
   }
 
   deletetask(_id: any, todoId: any) {
-    return this.httpClient.put<Task>(`${this.apiURL}/user/delete-task`, {
+    return this.httpClient.put<Task>(`${this.apiURL}/gateway/delete-task`, {
       _id,
       todoId,
     });
   }
+
+  getImage(): Observable<Task[]> {
+    return this.httpClient.get<Task[]>(`${this.apiURL}/gateway/show-image`);
+  }
+ 
 }

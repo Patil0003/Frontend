@@ -11,7 +11,7 @@ import { AuthServicesService } from '../../services/auth-services.service';
 export class MyprofileComponent implements OnInit {
   uploadform: any = FormGroup;
   user: any;
-  imagePath: any ='path';
+  imageList: any = [];
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -24,11 +24,12 @@ export class MyprofileComponent implements OnInit {
     this.uploadform = this.formBuilder.group({
       image: ['', Validators.required],
     });
-    // console.log("profile",this.user)
+    this.showImage();
+
   }
 
   onImagechange(event: any) {
-    console.log('vghv', event.target.files[0]);
+    // console.log('vghv', event.target.files[0]);
     const file = event.target.files[0];
     this.uploadform.patchValue({ image: file });
   }
@@ -37,13 +38,17 @@ export class MyprofileComponent implements OnInit {
     let formData = new FormData();
     formData.append('image', this.uploadform.value.image);
     this.service.fileupload(formData).subscribe((response: any) => {
-      console.log('image', response);
-      let path = 'http://localhost:7979/uploads/response.result.image';
-
+      console.log('image', response.data.result);
       this.toastr.success('Image Uploaded');
     });
   }
   loggedin() {
     return localStorage.getItem('user');
+  }
+  showImage() {
+    this.service.getImage().subscribe((response: any) => {
+      // console.log('Data Comming', response.data.image);
+      this.imageList = response.data.result;
+    });
   }
 }
