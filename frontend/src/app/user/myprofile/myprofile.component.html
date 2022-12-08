@@ -1,20 +1,33 @@
 <div class="container login-container">
   <div class="row">
-    <div class="col-md-6 ads" *ngIf="loggedin()">
+
+    <div class="col-md-6 ads" *ngIf="loggedin()" enctype="multipart/form-data">
       My Profile
-      <!-- <h1>
-        <span id="fl">
-          <img src="{{ user.image }}" width="150px" height="150px" /> </span
-        ><span id="sl"></span>
-      </h1> -->
+<div *ngFor="let show of imageData" >
+  <img src = "{{show.image}}" width ="150px" height ="150px"/>
+  
+</div>
+      <div class="text">
+        Upload your profile picture.
+        <input
+          class="form-control"
+          type="file"
+          (change)="onImagechange($event)"
+        />
+      </div>
+      <div>
+        <button type="button"  class="btn btn-primary btn-lg btn-block" (click)="upload()">
+          Submit
+        </button>
+      </div>
     </div>
     <div class="col-md-6 login-form" *ngIf="loggedin()">
       <div class="col-md-9">
         <div class="text-center">
           <span>
-            <label>Full Name:- {{ user.name }}</label>
-            <label>Email Address:- {{ user.email }}</label>
-            <label>Contact Number:- {{ user.mobile }}</label>
+            <label>Full Name:- {{ user.result.name }}</label>
+            <label>Email Address:- {{ user.result.email }}</label>
+            <label>Contact Number:- {{ user.result.mobile }}</label>
           </span>
         </div>
       </div>

@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { ToastrService } from 'ngx-toastr';
 import { AuthServicesService } from '../../services/auth-services.service';
-import { NgxSpinnerService } from 'ngx-spinner';
 import Swal from 'sweetalert2';
 import { BnNgIdleService } from 'bn-ng-idle';
 @Component({
@@ -21,8 +19,6 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder,
     private router: Router,
     private service: AuthServicesService,
-    private toastr: ToastrService,
-    private spinner: NgxSpinnerService,
     private bnIdle: BnNgIdleService
   ) {}
 
@@ -41,23 +37,23 @@ export class LoginComponent implements OnInit {
       return;
     }
     this.service.login(form).subscribe((response: any) => {
-      if (response.data.status == true) {
-        // console.log(response.data.result);
-        localStorage.setItem('user', JSON.stringify(response.data.result));
+      if (response) {
+        console.log("login",response.data);
+        localStorage.setItem('user', JSON.stringify(response.data));
         localStorage.setItem(
           'todoArray',
           JSON.stringify(response.data.result.todoArray)
         );
         Swal.fire('Login Success');
         //session-management
-        this.bnIdle.startWatching(10).subscribe((isTimeOut: Boolean) => {
+        this.bnIdle.startWatching(100).subscribe((isTimeOut: Boolean) => {
           if (isTimeOut) {
-            console.log('Session Expired');
+            // console.log('Session Expired');
             localStorage.removeItem('user');
             localStorage.removeItem('todoArray');
             this.router.navigate(['/login']);
-            Swal.fire('User Logout');
             this.bnIdle.stopTimer();
+            Swal.fire('Session Expiry. User Logout');
           }
         });
 
@@ -68,3 +64,4 @@ export class LoginComponent implements OnInit {
     });
   }
 }
+//
