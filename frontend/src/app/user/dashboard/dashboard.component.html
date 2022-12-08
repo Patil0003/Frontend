@@ -28,7 +28,9 @@
         </div>
 
         <h4 class="text-primary mt-4"><i class="bi bi-list-task"></i></h4>
-        <p class="text-center" *ngIf="taskArr.length < 1"><b>No task added</b></p>
+        <p class="text-center" *ngIf="taskArr.length < 1">
+          <b>No task added</b>
+        </p>
         <div style="overflow-y: auto; height: 350px">
           <div class="m-3" *ngFor="let task of taskArr">
             <div class="p-2 shadow border" id="tasks">
@@ -84,8 +86,6 @@
                 >
                   Update
                 </button>
-
-               
               </div>
             </div>
           </div>

@@ -3,8 +3,6 @@ import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import Swal from 'sweetalert2';
 
-// import Swal from 'sweetalert2';
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
