@@ -14,20 +14,15 @@
         <li *ngIf="!loggedin()" class="nav-item active">
           <a class="nav-link" routerLink="/login">Login</a>
         </li>
-        <li *ngIf="loggedin()"class="nav-item active">
-          <a class="nav-link" routerLink="/dashboard" >Create Task </a>
+        <li *ngIf="loggedin()" class="nav-item active">
+          <a class="nav-link" routerLink="/dashboard">Create Task </a>
         </li>
 
-        <li *ngIf="loggedin()" class="nav-item active" >
-
-          <a class="nav-link" routerLink="/myprofile"  >
+        <li *ngIf="loggedin()" class="nav-item active">
+          <a class="nav-link" routerLink="/myprofile">
             MyProfile
             <i class="bi bi-person"></i>
-           
-             <!-- <img src ={{User.image}} width=50px height =30px> -->
-             </a
-          >
-          
+          </a>
         </li>
         <li *ngIf="loggedin()" class="nav-item active">
           <a class="nav-link" (click)="logout()">Logout</a>
