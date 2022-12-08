@@ -15,13 +15,12 @@ export class AuthServicesService {
     }),
   };
   constructor(
-    private httpClient: HttpClient // private router: Router,
+    private httpClient: HttpClient 
   ) {}
   loggedin() {
     return !!localStorage.getItem('user');
   }
   signup(data: any) {
-    // console.log("login",data)
     return this.httpClient.post(`${this.apiURL}/gateway/signup`, data);
   }
   fileupload(formData: any) {
@@ -33,7 +32,6 @@ export class AuthServicesService {
   }
 
   addtask(todo: any, _id: any) {
-    // console.log("Task",todo,_id)
     return this.httpClient.post<any>(`${this.apiURL}/gateway/add-task`, {
       todo,
       _id,
@@ -45,7 +43,6 @@ export class AuthServicesService {
 
   updateTask(_id: any, todoId: any, data: any) {
     let userData = { ...data, _id, todoId };
-    // console.log('userData update servise', userData);
     return this.httpClient.put<any>(
       `${this.apiURL}/gateway/update-task`,
       userData

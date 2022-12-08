@@ -43,7 +43,7 @@ export class RegisterComponent implements OnInit {
       return;
     }
     this.service.signup(form).subscribe((response: any) => {
-      console.log("signup",response)
+      console.log('signup', response);
       if (response.data) {
         this.toastr.success('User Register Successful!');
         this.router.navigate(['/login']);
@@ -52,25 +52,4 @@ export class RegisterComponent implements OnInit {
       }
     });
   }
-  // signup() {
-  //   const formData = new FormData();
-  //   formData.append('image', this.signupForm.get('image').value);
-  //   formData.append('name', this.signupForm.get('name').value);
-  //   formData.append('mobile', this.signupForm.get('mobile').value);
-  //   formData.append('email', this.signupForm.get('email').value);
-  //   formData.append('password', this.signupForm.get('password').value);
-  //   this.submitted = true;
-
-  //   if (this.signupForm.invalid) {
-  //     return;
-  //   }
-  //   this.service.signup(formData).subscribe((response: any) => {
-  //     if (response) {
-  //       this.toastr.success('User Register Successful!');
-  //       this.router.navigate(['/login']);
-  //     } else {
-  //       this.toastr.error('Failed!');
-  //     }
-  //   });
-  // }
 }
