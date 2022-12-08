@@ -6,7 +6,7 @@ import { Task } from '../model/task';
   providedIn: 'root',
 })
 export class AuthServicesService {
-  private apiURL = 'http://localhost:6969';
+  private apiURL = 'http://localhost:9999';
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -28,13 +28,13 @@ export class AuthServicesService {
     console.log('Console image:-', formData);
     return this.httpClient.post(`${this.apiURL}/gateway/upload`, formData);
   }
-  fileupload(formData: any) {
-    console.log('login', formData);
-    return this.httpClient.post(
-      `${this.api_Image_URL}/user/imageupload`,
-      formData
-    );
-  }
+  // fileupload(formData: any) {
+  //   console.log('login', formData);
+  //   return this.httpClient.post(
+  //     `${this.api_Image_URL}/user/imageupload`,
+  //     formData
+  //   );
+  // }
   login(data: any) {
     return this.httpClient.post(`${this.apiURL}/gateway/login`, data);
   }
