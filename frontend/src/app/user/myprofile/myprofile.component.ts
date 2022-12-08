@@ -30,20 +30,20 @@ export class MyprofileComponent implements OnInit {
     this.showImage();
   }
 
-  onImagechange(event: any) {
-    // console.log('vghv', event.target.files[0]);
-    const file = event.target.files[0];
-    this.uploadform.patchValue({ image: file });
-  }
-  upload() {
-    console.log('upload image', this.uploadform.value.image);
-    let formData = new FormData();
-    formData.append('image', this.uploadform.value.image);
-    this.service.fileupload(formData).subscribe((response: any) => {
-      console.log('image', response.data.result);
-      this.toastr.success('Image Uploaded');
-    });
-  }
+  // onImagechange(event: any) {
+  //   // console.log('vghv', event.target.files[0]);
+  //   const file = event.target.files[0];
+  //   this.uploadform.patchValue({ image: file });
+  // }
+  // upload() {
+  //   console.log('upload image', this.uploadform.value.image);
+  //   let formData = new FormData();
+  //   formData.append('image', this.uploadform.value.image);
+  //   this.service.fileupload(formData).subscribe((response: any) => {
+  //     console.log('image', response.data.result);
+  //     this.toastr.success('Image Uploaded');
+  //   });
+  // }
 
   onImagechange(event: any) {
     console.log('vghv', event.target.files[0]);
