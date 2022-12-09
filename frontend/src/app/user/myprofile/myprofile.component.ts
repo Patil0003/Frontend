@@ -33,21 +33,30 @@ export class MyprofileComponent implements OnInit {
     this.uploadform.patchValue({ image: file });
   }
   upload() {
-    console.log('upload image', this.uploadform.value.image);
+    var email:any = localStorage.getItem("email");
+    // console.log(email)
+    
     let formData = new FormData();
-    formData.append('image', this.uploadform.value.image);
+    formData.append('file', this.uploadform.value.image);
+    formData.append("email", email)
     this.service.fileupload(formData).subscribe((response: any) => {
-      console.log('image', response.data.result);
+      // console.log('image', response.data.result);
       this.toastr.success('Image Uploaded');
+      this.showImage()
     });
   }
   loggedin() {
     return localStorage.getItem('user');
   }
   showImage() {
+    this.imageData = []
     this.service.getImage().subscribe((response: any) => {
       // console.log('Data Comming', response.data.image);
-      this.imageData = response.data.result;
+      let imgD = response.data.result;     
+      this.imageData.push(imgD.pop()); 
+      
+  
+      
     });
   }
 }

@@ -18,7 +18,7 @@ export class AuthServicesService {
     private httpClient: HttpClient 
   ) {}
   loggedin() {
-    return !!localStorage.getItem('user');
+    return !!localStorage.getItem('user')
   }
   signup(data: any) {
     return this.httpClient.post(`${this.apiURL}/gateway/signup`, data);
@@ -57,7 +57,8 @@ export class AuthServicesService {
   }
 
   getImage(): Observable<Task[]> {
-    return this.httpClient.get<Task[]>(`${this.apiURL}/gateway/show-image`);
+    const email = localStorage.getItem('email');
+    return this.httpClient.get<Task[]>(`${this.apiURL}/gateway/show-image?email=${email}`);
   }
  
 }

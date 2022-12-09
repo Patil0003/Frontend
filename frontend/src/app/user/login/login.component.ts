@@ -40,6 +40,7 @@ export class LoginComponent implements OnInit {
       if (response) {
         console.log('login', response.data);
         localStorage.setItem('user', JSON.stringify(response.data));
+        localStorage.setItem('email', JSON.stringify(response.data.result.email));
         localStorage.setItem(
           'todoArray',
           JSON.stringify(response.data.result.todoArray)
