@@ -52,14 +52,7 @@ export class MyprofileComponent implements OnInit {
     this.imageData = []
     this.service.getImage().subscribe((response: any) => {
       // console.log('Data Comming', response.data.image);
-      let imgD = response.data.result;
-      console.log(imgD,'new')
-    
-      
-
-      // console.log(this.imageData, 'befor')
-   
-      
+      let imgD = response.data.result;     
       this.imageData.push(imgD.pop()); 
       
   
